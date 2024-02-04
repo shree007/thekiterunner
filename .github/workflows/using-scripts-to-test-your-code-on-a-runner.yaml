@@ -1,4 +1,4 @@
-name: 'Run a bash script'
+name: 'Run a bash script in github action'
 on:
   workflow_dispatch:
   push:
