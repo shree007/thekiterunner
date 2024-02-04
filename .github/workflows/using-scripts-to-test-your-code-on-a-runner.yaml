@@ -7,8 +7,8 @@ on:
   pull_request:
 
 permissions:
-  contexts: read
-  pull_requests: read
+  contents: read
+  pull-requests: read
   
 
 concurrency:
@@ -19,15 +19,7 @@ jobs:
   check-links:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.13.x
-          cache: npm
-      - name: Install
-        run: npm ci 
+      - uses: actions/checkout@v4
       - name: Gather files changed
         uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b
         with:
@@ -36,5 +28,7 @@ jobs:
         run: cat $HOME/files.json
       - name: print parameters
         run: |
+          pwd 
+          ls -la
           chmod +x scripts/print-parameters.sh
-          ./scripts/print-parameters.sh "aws" "azure "prometheus" "grafana"
+          ./scripts/print-parameters.sh aws azure prometheus grafana
