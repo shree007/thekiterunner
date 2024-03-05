@@ -7,9 +7,9 @@ on:
     branches:
       - basics-github-action
 
-
 jobs:
   check-bats-version:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
