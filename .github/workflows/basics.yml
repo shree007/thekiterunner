@@ -5,11 +5,12 @@ run-name: ${{ github.actor }} is learning github learn-github-actions
 on:
   push:
     branches:
-      - basics-github-action
-
+      - 06-mar-2024
+      - main
 
 jobs:
   check-bats-version:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
