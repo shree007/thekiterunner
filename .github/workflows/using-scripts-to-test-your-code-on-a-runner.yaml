@@ -1,0 +1,34 @@
+name: 'Run a bash script in github action'
+on:
+  workflow_dispatch:
+  push:
+    branchs:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: read
+  
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{github.event.pull_requests.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gather files changed
+        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b
+        with:
+          fileOutput: 'json'
+      - name: Show file changed
+        run: cat $HOME/files.json
+      - name: print parameters
+        run: |
+          pwd 
+          ls -la
+          chmod +x scripts/print-parameters.sh
+          ./scripts/print-parameters.sh aws azure prometheus grafana
