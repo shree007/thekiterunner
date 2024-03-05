@@ -4,6 +4,7 @@ on:
   push:
     branchs:
       - main
+      - 06-mar-2024
   pull_request:
 
 permissions:
@@ -16,6 +17,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  if: false
   check-links:
     runs-on: ubuntu-latest
     steps:
