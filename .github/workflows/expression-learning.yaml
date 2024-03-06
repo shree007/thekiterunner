@@ -2,6 +2,7 @@ name: build
 on: push
 jobs:
   job1:
+    if: false
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -9,6 +10,7 @@ jobs:
       - id: set-matrix
         run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
   job2:
+    if: false
     needs: job1
     runs-on: ubuntu-latest
     strategy:
